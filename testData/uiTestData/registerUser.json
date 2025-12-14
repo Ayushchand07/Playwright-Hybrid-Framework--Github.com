@@ -1,0 +1,19 @@
+{
+  "name": "ayushc123",
+  "email": "ayush.chand@example.com",
+  "password": "Passw0rd!23",
+  "title": "Mr",
+  "birth_date": "15",
+  "birth_month": "08",
+  "birth_year": "1997",
+  "firstname": "Ayush",
+  "lastname": "Chand",
+  "company": "TechNova Pvt Ltd",
+  "address1": "123 MG Road",
+  "address2": "Apt 4B",
+  "country": "India",
+  "zipcode": "560001",
+  "state": "Karnataka",
+  "city": "Bengaluru",
+  "mobile_number": "+91-9876543210"
+}

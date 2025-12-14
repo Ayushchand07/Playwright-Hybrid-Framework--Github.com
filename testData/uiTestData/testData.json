@@ -1,0 +1,44 @@
+{
+    "firstName": "Ayush",
+    "lastName": "Chand",
+    "email": "aayushchand900@gmail.com",
+    
+    "country": "India",
+    "companyName": "Veersa Technologies",
+    "address" : "221B Baker's Street",
+    "address2" : "220B Baker's street",
+    "state": "New Delhi",
+    "city": "New Delhi",
+    "zipCode": "110058",
+    "mobileNumber": "7827660564",
+    "date": "7",
+    "month": "December",
+    "year": "2002",
+
+
+    "wrongEmail": "wrongEmail@gmail.com",
+    "wrongPassword": "WrongPassword@123",
+
+    "contactFormMessage" : "This  is my message - HELLO 123",
+    "contactFormSubject" : "This is subject",
+
+    "productName" : "Blue Top",
+    "productName2" : "Men Tshirt",
+
+    "productList" : [{ "name": "Blue Top", "productId": 1 },{ "name": "Men Tshirt", "productId": 2 },{ "name": "Winter Top", "productId": 5 }],
+    "productQtyList" : [{ "name": "Blue Top", "productId": 1, "qty": "1" },{ "name": "Men Tshirt", "productId": 2, "qty": "3" },{ "name": "Winter Top", "productId": 5, "qty": "3" }],
+
+
+    "nameOnCard" : "Ayush Chand",
+    "cardNumber" : "895426975416",
+    "expiryMonth": "12",
+    "cvc" : "345",
+    "expiryYear": "2030",
+    
+
+    "reviewMessage": "Great product!!",
+
+    "productcategory": "Dress",
+    "categoryName": "Women"
+
+ }
