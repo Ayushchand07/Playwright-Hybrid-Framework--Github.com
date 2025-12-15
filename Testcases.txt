@@ -1,0 +1,167 @@
+🔹 UI TEST CASES TO AUTOMATE
+
+
+UI-01: Login (Valid User)-----------------------------------DONE
+
+Login with valid credentials
+Verify dashboard loads
+Verify user avatar / username visible
+
+
+UI-02: Logout------------------------------------------------DONE
+
+Logout from session
+Verify redirect to login page
+Verify session is destroyed (back button check)
+
+
+UI-03: Create Repository (Basic)
+
+Create repo with:
+Name
+Public / Private
+Verify success message
+Verify repo appears in UI list
+
+
+UI-04: Create Issue
+
+Open existing repo
+Create issue with title & description
+Verify issue appears in UI
+
+
+UI-05: Edit Issue (Title)
+Edit issue title
+Save changes
+Verify updated title in UI
+
+
+UI-06: UI Validation – Negative
+
+Try creating repo with empty name
+Verify inline validation
+Verify repo not created
+
+
+
+🔹 API TEST CASES TO AUTOMATE
+
+
+API-01: Create Repository
+
+POST create repo
+Validate:
+Status = 201
+Name
+Visibility
+Owner
+
+
+API-02: Fetch Repository
+
+GET repo details
+Validate:
+Name
+Visibility
+Description
+
+
+API-03: Create Issue
+
+POST create issue
+Validate:
+Status = 201
+Title
+State = open
+
+
+API-04: Update Issue
+
+PATCH update issue title
+Validate updated response
+
+
+API-05: Delete Repository (Cleanup)
+
+DELETE repo
+Validate 204 response
+Confirm repo no longer fetchable
+
+
+API-06: Authentication Failure
+
+Use invalid token
+Verify 401 Unauthorized
+
+
+API-07: Permission Failure
+
+Use token without repo scope
+Verify 403 Forbidden
+
+
+API-08: Rate Limit Handling
+
+Hit API repeatedly
+Validate rate-limit response headers
+Handle 429 gracefully (don’t let tests flake)
+
+
+🔥 HYBRID TEST CASES (THIS IS THE MONEY)
+
+Rule: One layer creates data, the other validates it.
+
+If your hybrid tests don’t catch real integration bugs, they’re useless.
+
+Hybrid-01: API → UI Repository Sync
+
+API: Create repository
+
+UI: Login
+
+UI: Verify repo appears
+
+UI: Validate name & visibility
+
+Catches: Backend success, UI not updated
+
+Hybrid-02: UI → API Issue Sync
+
+UI: Create issue
+
+API: Fetch issues
+
+API: Validate title, state, creator
+
+Catches: UI success message, backend failure
+
+Hybrid-03: API Update → UI Refresh
+
+API: Update issue title
+
+UI: Refresh page
+
+UI: Verify updated title
+
+Catches: UI caching / stale data
+
+Hybrid-04: API Delete → UI Validation
+
+API: Delete repository
+
+UI: Refresh repo list
+
+UI: Verify repo not visible
+
+Catches: Ghost UI data
+
+Hybrid-05: Auth Boundary Validation
+
+API: Create repo with valid token
+
+UI: Login with different user
+
+UI: Verify repo NOT visible
+
+Catches: Permission leaks
