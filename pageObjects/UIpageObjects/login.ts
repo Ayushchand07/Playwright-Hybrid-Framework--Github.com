@@ -14,15 +14,8 @@ export class LoginPage {
     this.page = page;
     this.loginEmailIdField = page.locator("#login_field")
     this.loginPasswordField = page.locator("#password")
-    this.signInButton = page.getByRole('button',{name: 'Sign in'});
-  }
+    this.signInButton = page.getByRole('button', {  name: 'Sign in', exact: true,});
 
-  async navigateToUrl() {
-    const url = process.env.SITE_URL;
-    if (!url){
-        throw new Error("SITE_URL is not defined in .env");
-    }
-    await this.page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
   }
 
   async signIn(username: string | undefined, password: string | undefined) {

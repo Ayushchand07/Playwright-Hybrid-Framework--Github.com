@@ -15,7 +15,7 @@ Verify redirect to login page
 Verify session is destroyed (back button check)
 
 
-UI-03: Create Repository (Basic)
+UI-03: Create Repository (Basic)------------------------------DONE
 
 Create repo with:
 Name
@@ -24,7 +24,7 @@ Verify success message
 Verify repo appears in UI list
 
 
-UI-04: Create Issue
+UI-04: Create Issue------------------------------------------DONE
 
 Open existing repo
 Create issue with title & description

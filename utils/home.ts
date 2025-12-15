@@ -6,7 +6,11 @@ export class HomePage{
   readonly loggedInWithUserIcon: Locator
   readonly loggedInWithUserDropdown: Locator
   readonly signOutLink: Locator; 
-  readonly repositoriesIcon: Locator
+  readonly repositoriesOption: Locator
+
+  readonly repoSearchField: Locator
+  readonly globalNavigationButton: Locator
+  readonly homeLink: Locator
 
 
   constructor(page: Page) {
@@ -15,7 +19,12 @@ export class HomePage{
     this.loggedInWithUserIcon = page.getByRole('button', { name: 'Open user navigation menu' })
     this.loggedInWithUserDropdown = page.getByRole('heading', { name: 'User navigation' }) 
     this.signOutLink = page.getByRole('link', {name: "Sign out"})
-    this.repositoriesIcon = page.getByRole('link', {name: "Repositories"})
+    this.repositoriesOption = page.getByRole('link', {name: "Repositories"}).first()
+    this.globalNavigationButton = page.getByRole('button', {name: "Open global navigation menu"})
+    this.homeLink = page.getByRole('link', {name: "Home"})
+
+    this.repoSearchField = page.locator('#dashboard-repos-filter-left')
+
   }
 
   async navigateToUrl() {
@@ -42,7 +51,27 @@ async isUsernameVisible(username: string | undefined): Promise<boolean> {
 }
 
 async navigateToRepositories(){
-    this.repositoriesIcon.click();
+    this.repositoriesOption.click();
+    await this.page.waitForTimeout(6000);
+}
+
+async isRepoPresent(username: string | undefined, repoName: string ): Promise<boolean> {
+  await this.repoSearchField.fill(repoName);
+
+  const repoLocator = this.page.getByRole('link', {
+    name: `${username}/${repoName}`  });
+
+  return await repoLocator.isVisible();
+}
+
+async navigateToHome(){
+  await this.page.goto('https://github.com/dashboard');
+  await this.page.waitForTimeout(5000);
+}
+
+async navigateToMyIssues(){
+  await this.page.goto('https://github.com/issues/created');
+  await this.page.waitForTimeout(5000);
 }
 
 }
