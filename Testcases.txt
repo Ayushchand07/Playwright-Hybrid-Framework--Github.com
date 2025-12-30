@@ -48,7 +48,7 @@ Verify repo not created
 🔹 API TEST CASES TO AUTOMATE
 
 
-API-01: Create Repository
+API-01: Create Repository ----------------------------DONE
 
 POST create repo
 Validate:
