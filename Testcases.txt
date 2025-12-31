@@ -58,7 +58,7 @@ Visibility
 Owner
 
 
-API-02: Fetch Repository
+API-02: Fetch Repository 
 
 GET repo details
 Validate:
@@ -82,7 +82,7 @@ PATCH update issue title
 Validate updated response
 
 
-API-05: Delete Repository (Cleanup)
+API-05: Delete Repository (Cleanup)-----------------------------DONE
 
 DELETE repo
 Validate 204 response

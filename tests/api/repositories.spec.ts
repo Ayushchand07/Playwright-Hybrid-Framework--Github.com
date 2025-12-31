@@ -19,8 +19,15 @@ test.beforeEach(async () => {
 
 test('API 1: Create a new repo', async () => {
   const response = await client.createNewRepo(`pw-api-${Date.now()}`, 'dummydesc');
-
-  console.log(await response.json());
-
   await statusCodeValidator.validateStatusCode(response, 201);
+});
+
+test('API 2: Delete a repo', async () => {
+  const response = await client.deleteRepo(`Ayushtest123`, 'hgf');
+  await statusCodeValidator.validateStatusCode(response, 204);
+});
+
+test('API 3: Fetch a repo', async () => {
+  const response = await client.fetchRepo(`Ayushtest123`, 'pw-e2e-1765813549690-yogurt');
+  await statusCodeValidator.validateStatusCode(response, 200);
 });
