@@ -28,12 +28,36 @@ if (!userToken) {
   }
 
   
- async createNewRepo(repoName: string, repoDescription: string ) {
+async createNewRepo(repoName: string, repoDescription: string ) {
   return await this.apiContext.post(endpoints.CREATE_REPO, {
   data: {
     name: repoName,
     description: repoDescription,
     private: false,
+  },
+  });
+}
+
+async deleteRepo(ownerName: string, repoName: string ) {
+   const deleteEndpoint = endpoints.DELETE_REPO
+    .replace('{owner}', ownerName)
+    .replace('{repo}', repoName);
+  return await this.apiContext.delete(deleteEndpoint, {
+  params: {
+    owner: ownerName,
+    repo: repoName
+  },
+  });
+}
+
+async fetchRepo(ownerName: string, repoName: string ) {
+   const fetchEndpoint = endpoints.DELETE_REPO
+    .replace('{owner}', ownerName)
+    .replace('{repo}', repoName);
+  return await this.apiContext.get(fetchEndpoint, {
+  params: {
+    owner: ownerName,
+    repo: repoName
   },
   });
 }
