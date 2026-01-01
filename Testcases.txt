@@ -58,7 +58,7 @@ Visibility
 Owner
 
 
-API-02: Fetch Repository 
+API-02: Fetch Repository --------------------------------DONE
 
 GET repo details
 Validate:
@@ -67,7 +67,7 @@ Visibility
 Description
 
 
-API-03: Create Issue
+API-03: Create Issue---------------------------------DONE
 
 POST create issue
 Validate:
@@ -76,7 +76,7 @@ Title
 State = open
 
 
-API-04: Update Issue
+API-04: Update Issue------------------------------------DONE
 
 PATCH update issue title
 Validate updated response
@@ -89,7 +89,7 @@ Validate 204 response
 Confirm repo no longer fetchable
 
 
-API-06: Authentication Failure
+API-06: Authentication Failure ---------------------------------
 
 Use invalid token
 Verify 401 Unauthorized
@@ -114,7 +114,7 @@ Rule: One layer creates data, the other validates it.
 
 If your hybrid tests don’t catch real integration bugs, they’re useless.
 
-Hybrid-01: API → UI Repository Sync
+Hybrid-01: API → UI Repository Sync--------------------------------DONE
 
 API: Create repository
 
@@ -126,7 +126,7 @@ UI: Validate name & visibility
 
 Catches: Backend success, UI not updated
 
-Hybrid-02: UI → API Issue Sync
+Hybrid-02: UI → API Issue Sync------------------------------------DONE
 
 UI: Create issue
 
@@ -138,7 +138,7 @@ Catches: UI success message, backend failure
 
 Hybrid-03: API Update → UI Refresh
 
-API: Update issue title
+API: Update issue title ----------------------------------------------DONE
 
 UI: Refresh page
 
@@ -146,7 +146,7 @@ UI: Verify updated title
 
 Catches: UI caching / stale data
 
-Hybrid-04: API Delete → UI Validation
+Hybrid-04: API Delete → UI Validation -------------------------------DONE
 
 API: Delete repository
 

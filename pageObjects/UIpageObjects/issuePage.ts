@@ -1,4 +1,4 @@
-import { Page, Locator} from '@playwright/test';
+import { Page, Locator, expect} from '@playwright/test';
 import * as dotenv from 'dotenv';
 
 dotenv.config();
@@ -14,6 +14,9 @@ export class IssuePage {
   readonly searchIssuesField: Locator
   readonly searchButton: Locator
 
+  readonly searchRepoBar: Locator
+  readonly issueTitle: Locator
+
 
   constructor(page: Page) {
     this.page = page;
@@ -24,12 +27,19 @@ export class IssuePage {
     this.createIssueButton = page.getByRole('button',{name: 'Create ( control enter )'});
     this.searchIssuesField = page.getByRole('combobox',{name: 'Search Issues'});
     this.searchButton = page.getByRole('button', { name: 'Search', exact: true})
+    this.searchRepoBar = page.getByRole('combobox', {name: 'Select repository'})
+    this.issueTitle = page.locator('[data-testid="issue-title"]')
     
   }
 
-  async createNewIssue(issuName: string, description: string) {
+  async createNewIssue(issuName: string, description: string, repoName: string) {
     await this.newIssueButton.click()
-    await this.blankIssueLink.click();
+    await this.page.waitForTimeout(3000);
+    const repoSelectorDropdownArrow = this.page.locator('.prc-Button-Visual-YNt2F')
+    await repoSelectorDropdownArrow.nth(1).click();
+    await this.searchRepoBar.fill(repoName);
+    await this.page.getByText(repoName).click();
+    //await this.blankIssueLink.click();
     await this.issueTitleField.fill(issuName);
     await this.issueDescriptionField.fill(description);
     await this.createIssueButton.click();
@@ -37,12 +47,17 @@ export class IssuePage {
   }
 
   async isIssuePresent(issueName:string){
-    this.searchIssuesField.fill(issueName);
-    this.searchButton.click()
+    await this.searchIssuesField.fill(issueName);
+    await this.searchButton.click()
     const issueLocator = this.page.getByRole('link', {
     name: issueName});
 
     return await issueLocator.isVisible();
+  }
+
+  async validateIssueTitle(UpdatedTitle:string|number){
+    if(UpdatedTitle == null){throw 'issue title is null'}
+    await expect(this.issueTitle).toHaveText(UpdatedTitle.toString());
   }
 
 }
