@@ -1,6 +1,7 @@
 import { APIRequestContext, request } from '@playwright/test';
 import { endpoints } from '../../fixtures/endPoints';
 import * as dotenv from 'dotenv';
+import { IssueUpdatePayload } from '../../pageObjects/APIpageObjects/updateIssuePayload';
 
 dotenv.config();
 
@@ -39,10 +40,10 @@ async createNewRepo(repoName: string, repoDescription: string ) {
 }
 
 async deleteRepo(ownerName: string, repoName: string ) {
-   const deleteEndpoint = endpoints.DELETE_REPO
+   const deleteRepoEndpoint = endpoints.DELETE_REPO
     .replace('{owner}', ownerName)
     .replace('{repo}', repoName);
-  return await this.apiContext.delete(deleteEndpoint, {
+  return await this.apiContext.delete(deleteRepoEndpoint, {
   params: {
     owner: ownerName,
     repo: repoName
@@ -51,15 +52,59 @@ async deleteRepo(ownerName: string, repoName: string ) {
 }
 
 async fetchRepo(ownerName: string, repoName: string ) {
-   const fetchEndpoint = endpoints.DELETE_REPO
+   const fetchRepoEndpoint = endpoints.DELETE_REPO
     .replace('{owner}', ownerName)
     .replace('{repo}', repoName);
-  return await this.apiContext.get(fetchEndpoint, {
+  return await this.apiContext.get(fetchRepoEndpoint, {
   params: {
     owner: ownerName,
     repo: repoName
   },
   });
+}
+
+async createNewIssue(ownerName: string, repoName: string, issueName: string ) {
+   const createIssueEndpoint = endpoints.CREATE_ISSUE
+    .replace('{owner}', ownerName)
+    .replace('{repo}', repoName);
+  return await this.apiContext.post(createIssueEndpoint, {
+  params: {
+    owner: ownerName,
+    repo: repoName
+  },
+  data: {
+    title: issueName,
+  }
+  });
+}
+
+async fetchIssue(ownerName: string, repoName: string, issueNumber: number) {
+   const fetchIssueEndpoint = endpoints.FETCH_ISSUE
+    .replace('{owner}', ownerName)
+    .replace('{repo}', repoName)
+    .replace('{issue_number}', issueNumber.toString());
+  return await this.apiContext.get(fetchIssueEndpoint, {
+  params: {
+    owner: ownerName,
+    repo: repoName,
+    issue_number: issueNumber
+  },
+  });
+}
+
+async updateIssue(ownerName: string, repoName: string, issueNumber: number, updatedPayload: IssueUpdatePayload) {
+   const updateIssueEndpoint = endpoints.UPDATE_ISSUE
+    .replace('{owner}', ownerName)
+    .replace('{repo}', repoName)
+    .replace('{issue_number}', issueNumber.toString());
+  return await this.apiContext.patch(updateIssueEndpoint, {
+  params: {
+    owner: ownerName,
+    repo: repoName,
+    issue_number: issueNumber
+  },
+  data: updatedPayload,
+});
 }
 
   async close() {

@@ -1,6 +1,4 @@
 import { defineConfig, devices } from '@playwright/test';
-import { APIClient } from './utils/api/apiClient';
-import { endpoints } from './fixtures/endPoints';
 
 /**
  * Read environment variables from file.
@@ -14,6 +12,10 @@ import { endpoints } from './fixtures/endPoints';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
+  use: {
+    storageState: 'auth.json',
+  },
+},{
   testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: true,

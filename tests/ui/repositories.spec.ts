@@ -11,16 +11,16 @@ const userName = process.env.ADMIN_NAME;
 const password = process.env.PASSWORD; 
 
 test.beforeEach('signIn', async({page})=>{
-    const loginPage = new LoginPage(page)
-    const homePage = new HomePage(page)
+//     const loginPage = new LoginPage(page)
+       const homePage = new HomePage(page)
 
-    await homePage.navigateToUrl();
-    await homePage.signInLink.click()
-    await loginPage.signIn(userName, password)
-    await homePage.openUserMenu()
-    expect(homePage.isUserMenuVisible()).toBeTruthy();
-    //expect(homePage.isUsernameVisible(userName)).toBeTruthy()
-    await homePage.page.waitForTimeout(5000)
+       await homePage.navigateToUrl();
+//     await homePage.signInLink.click()
+//     await loginPage.signIn(userName, password)
+//     await homePage.openUserMenu()
+//     expect(homePage.isUserMenuVisible()).toBeTruthy();
+//     //expect(homePage.isUsernameVisible(userName)).toBeTruthy()
+//     await homePage.page.waitForTimeout(5000)
 })
 
 test('Create new repository', async({page})=>{
