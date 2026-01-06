@@ -9,6 +9,7 @@ export class RepoPage {
   readonly descriptionField: Locator
   readonly repositoryNameField: Locator
   readonly createNewRepoButton: Locator
+  readonly emptyTitleErrorMessage : Locator
 
 
   constructor(page: Page) {
@@ -17,6 +18,8 @@ export class RepoPage {
     this.repositoryNameField = page.getByRole('textbox',{name: 'Repository name *'});
     this.newRepositoryLink = page.getByRole('link',{name: 'New'});
     this.createNewRepoButton = page.getByRole('button',{name: 'Create repository'});
+
+    this.emptyTitleErrorMessage = page.getByText('Name cannot be blank')
     
   }
 
