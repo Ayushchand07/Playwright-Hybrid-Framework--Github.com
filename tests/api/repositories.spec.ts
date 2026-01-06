@@ -21,10 +21,10 @@ test('API 1: Create a new repo', async () => {
 });
 
 test('API 2: Delete a repo', async () => {
-  // const reponame = `pw-api-${Date.now()}`
-  // const response1 = await client.createNewRepo(reponame, 'dummydesc');
-  // await statusCodeValidator.validateStatusCode(response1, 201);
-  const response2 = await client.deleteRepo(`Ayushtest123`, 'pw-api-1767269558751');
+  const reponame = `pw-api-${Date.now()}`
+  const response1 = await client.createNewRepo(reponame, 'dummydesc');
+  await statusCodeValidator.validateStatusCode(response1, 201);
+  const response2 = await client.deleteRepo(`Ayushtest123`, reponame);
   await statusCodeValidator.validateStatusCode(response2, 204);
 });
 

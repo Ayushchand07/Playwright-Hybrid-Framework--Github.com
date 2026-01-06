@@ -24,20 +24,20 @@ Verify success message
 Verify repo appears in UI list
 
 
-UI-04: Create Issue------------------------------------------DONE
+UI-04: Create Issue--------------------------------------------DONE
 
 Open existing repo
 Create issue with title & description
 Verify issue appears in UI
 
 
-UI-05: Edit Issue (Title)
+UI-05: Edit Issue (Title) -----
 Edit issue title
 Save changes
 Verify updated title in UI
 
 
-UI-06: UI Validation – Negative
+UI-06: UI Validation – Negative ---------------------------------------DONE
 
 Try creating repo with empty name
 Verify inline validation

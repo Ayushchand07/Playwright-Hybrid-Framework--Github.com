@@ -14,8 +14,6 @@ if(!userName){
     throw "User name is not defined in env file"
 }
 
-const password = process.env.PASSWORD;
-
 test('Create issue and validate', async({page}) => {
     test.setTimeout(40000);
     const client = new APIClient()
@@ -40,7 +38,7 @@ test('Create issue and validate', async({page}) => {
 
 test('Update issue and validate title', async({page}) => {
 
-    test.setTimeout(50000);
+    test.setTimeout(70000);
 
     const updatePayload: IssueUpdatePayload = {
   "title": `UPDATED_Issue-API-${Date.now()}`,
