@@ -5,14 +5,19 @@
   "directories": {
     "test": "tests"
   },
-  "scripts": {},
+  "scripts": {
+    "test": "playwright test",
+    "clean:allure": "rm -rf allure-results allure-report",
+    "test:allure": "npm run clean:allure && playwright test"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
     "@playwright/test": "^1.55.1",
-    "@types/node": "^24.1.0"
+    "@types/node": "^24.1.0",
+    "allure-playwright": "^3.4.4"
   },
   "dependencies": {
     "@faker-js/faker": "^9.9.0",
