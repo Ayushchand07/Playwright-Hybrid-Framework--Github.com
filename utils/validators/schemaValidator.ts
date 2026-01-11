@@ -3,9 +3,12 @@ import Ajv from 'ajv'
 
 export class schemaValidator{
 
-    static async validateSchema(response, expectedSchema){
+    static async validateSchema(response: any, expectedSchema: any){
     const responseBody = await response.json();
-    const ajv = new Ajv();
+    const ajv = new Ajv({
+  allErrors: true,
+  strict: false
+});
     const validate = ajv.compile(expectedSchema);
     const isValid = validate(responseBody)
 

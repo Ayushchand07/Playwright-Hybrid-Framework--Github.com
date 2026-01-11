@@ -5,6 +5,7 @@ import { schemaValidator } from '../../utils/validators/schemaValidator';
 import { responseBodyValidator } from '../../utils/validators/responseBodyValidator';
 import { responseCodeValidator } from '../../utils/validators/responseCodeValidator';
 import { statusCodeValidator } from '../../utils/validators/statusCodeValidator';
+import expectedSchema from '../../testData/schemas/fetchRepoSchema.json'
 
 dotenv.config();
 
@@ -28,10 +29,11 @@ test('API 2: Delete a repo', async () => {
   await statusCodeValidator.validateStatusCode(response2, 204);
 });
 
-test('API 3: Fetch a repo', async () => {
+test('API 3: Get a repo', async () => {
   const reponame = `pw-api-${Date.now()}`
   const response1 = await client.createNewRepo(reponame, 'dummydesc');
   await statusCodeValidator.validateStatusCode(response1, 201);
   const response = await client.fetchRepo(`Ayushtest123`, reponame);
   await statusCodeValidator.validateStatusCode(response, 200);
+  await schemaValidator.validateSchema(response, expectedSchema )
 });
