@@ -16,12 +16,12 @@ test.beforeEach(async () => {
   await client.init();
 });
 
-test('API 1: Create a new repo', async () => {
+test('API 1: Create a new repo',{tag: '@api'}, async () => {
   const response = await client.createNewRepo(`pw-api-${Date.now()}`, 'dummydesc');
   await statusCodeValidator.validateStatusCode(response, 201);
 });
 
-test('API 2: Delete a repo', async () => {
+test('API 2: Delete a repo',{tag: '@api'}, async () => {
   const reponame = `pw-api-${Date.now()}`
   const response1 = await client.createNewRepo(reponame, 'dummydesc');
   await statusCodeValidator.validateStatusCode(response1, 201);
@@ -29,7 +29,7 @@ test('API 2: Delete a repo', async () => {
   await statusCodeValidator.validateStatusCode(response2, 204);
 });
 
-test('API 3: Get a repo', async () => {
+test('API 3: Get a repo',{tag: '@api'}, async () => {
   const reponame = `pw-api-${Date.now()}`
   const response1 = await client.createNewRepo(reponame, 'dummydesc');
   await statusCodeValidator.validateStatusCode(response1, 201);
