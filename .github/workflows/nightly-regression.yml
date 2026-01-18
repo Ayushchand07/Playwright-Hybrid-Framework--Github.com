@@ -39,7 +39,8 @@ jobs:
           CI:  ${{secrets.CI}}
 
         run: |
-          npx playwright test
+          npx playwright test --grep @setup
+          npx playwright test --grep-invert @setup
 
       - name: Upload Playwright Report
         if: always()

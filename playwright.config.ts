@@ -1,8 +1,8 @@
 import { defineConfig, devices } from '@playwright/test';
 
-import dotenv from 'dotenv';
-import path from 'path';
-dotenv.config({ path: path.resolve(__dirname, '.env') });
+// import dotenv from 'dotenv';
+// import path from 'path';
+// dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 
 export default defineConfig({
@@ -48,6 +48,15 @@ export default defineConfig({
   {
     name: 'hybrid',
     testMatch: /tests\/hybrid\/.*\.spec\.ts/,
+    use: {
+      ...devices['Desktop Chrome'],
+      storageState: 'auth.json', // UI only
+    },
+  },
+
+  {
+    name: 'Authentication',
+    testMatch: /tests\/Authentication\/.*\.spec\.ts/,
     use: {
       ...devices['Desktop Chrome'],
       storageState: 'auth.json', // UI only
