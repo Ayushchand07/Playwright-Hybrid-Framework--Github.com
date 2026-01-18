@@ -3,20 +3,17 @@ import { LoginPage } from '../../pageObjects/UIpageObjects/login.ts'
 import { APIClient } from '../../utils/api/apiClient.ts'
 import { HomePage } from '../../utils/home.ts'
 import { statusCodeValidator } from '../../utils/validators/statusCodeValidator.ts'
-import { IssuePage } from '../../pageObjects/UIpageObjects/issuePage.ts'
 import * as dotenv from 'dotenv';
-import { IssueUpdatePayload } from '../../pageObjects/APIpageObjects/updateIssuePayload.ts'
 
 dotenv.config();
 
-const userName = process.env.ADMIN_NAME;
+const userName = process.env.USER_NAME;
 if(!userName){
     throw "User name is not defined in env file"
 }
-
 const password = process.env.PASSWORD;
 
-test('Create repo and validate', async({page}) => {
+test('Create repo and validate',{tag: '@hybrid'}, async({page}) => {
     const client = new APIClient()
     await client.init();
 
@@ -25,10 +22,10 @@ test('Create repo and validate', async({page}) => {
 
     const homePage = new HomePage(page)
     await homePage.navigateToUrl();
-    await homePage.signInLink.click()
+    // await homePage.signInLink.click()
 
-    const loginPage = new LoginPage(page);
-    await loginPage.signIn(userName, password);
+    // const loginPage = new LoginPage(page);
+    // await loginPage.signIn(userName, password);
 
     //verify repo is preset on UI
     await homePage.navigateToHome();
@@ -39,7 +36,7 @@ test('Create repo and validate', async({page}) => {
 })
 
 
-test('Delete a repo and validate', async({page}) => {
+test('Delete a repo and validate',{tag: '@hybrid'}, async({page}) => {
     const client = new APIClient()
     await client.init();
 

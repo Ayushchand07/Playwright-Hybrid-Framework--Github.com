@@ -57,6 +57,7 @@ async navigateToRepositories(){
 
 async isRepoPresent(username: string | undefined, repoName: string ): Promise<boolean> {
   await this.repoSearchField.fill(repoName);
+  await this.page.waitForTimeout(2000);
 
   const repoLocator = this.page.getByRole('link', {
     name: `${username}/${repoName}`  });
