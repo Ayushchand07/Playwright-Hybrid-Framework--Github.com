@@ -59,7 +59,6 @@ export default defineConfig({
     testMatch: /tests\/Authentication\/.*\.spec\.ts/,
     use: {
       ...devices['Desktop Chrome'],
-      storageState: 'auth.json', // UI only
     },
   },
 ]
