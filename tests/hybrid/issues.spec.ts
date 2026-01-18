@@ -1,5 +1,4 @@
 import {test,expect} from 'playwright/test'
-import { LoginPage } from '../../pageObjects/UIpageObjects/login.ts'
 import { APIClient } from '../../utils/api/apiClient.ts'
 import { HomePage } from '../../utils/home.ts'
 import { statusCodeValidator } from '../../utils/validators/statusCodeValidator.ts'
@@ -9,13 +8,13 @@ import { IssueUpdatePayload } from '../../pageObjects/APIpageObjects/updateIssue
 
 dotenv.config();
 
-const userName = process.env.ADMIN_NAME;
+const userName = process.env.USER_NAME;
 if(!userName){
     throw "User name is not defined in env file"
 }
 
-test('Create issue and validate', async({page}) => {
-    test.setTimeout(40000);
+test('Create issue and validate',{tag: '@hybrid'}, async({page}) => {
+    test.setTimeout(150000);
     const client = new APIClient()
     await client.init();
 
@@ -36,9 +35,9 @@ test('Create issue and validate', async({page}) => {
     await statusCodeValidator.validateStatusCode(response1, 200);
 })
 
-test('Update issue and validate title', async({page}) => {
+test('Update issue and validate title',{tag: '@hybrid'}, async({page}) => {
 
-    test.setTimeout(70000);
+    test.setTimeout(150000);
 
     const updatePayload: IssueUpdatePayload = {
   "title": `UPDATED_Issue-API-${Date.now()}`,

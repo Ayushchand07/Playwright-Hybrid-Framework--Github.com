@@ -32,9 +32,12 @@ jobs:
 
       - name: Run Full Regression
         env:
-          BASE_URL: https://github.com
-          USER_TOKEN: ${{ secrets.USER_TOKEN }}
-          CI: true
+          SITE_URL: ${{secrets.SITE_URL}}
+          USER_NAME: ${{secrets.USER_NAME}}
+          PASSWORD : ${{secrets.PASSWORD}}
+          USER_TOKEN : ${{secrets.USER_TOKEN}}
+          CI:  ${{secrets.CI}}
+
         run: |
           npx playwright test
 

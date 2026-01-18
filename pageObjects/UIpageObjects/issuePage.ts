@@ -39,6 +39,7 @@ export class IssuePage {
     await repoSelectorDropdownArrow.nth(1).click();
     await this.searchRepoBar.fill(repoName);
     await this.page.getByText(repoName).click();
+    await this.page.waitForTimeout(3000)
     await this.issueTitleField.fill(issuName);
     await this.issueDescriptionField.fill(description);
     await this.createIssueButton.click();
