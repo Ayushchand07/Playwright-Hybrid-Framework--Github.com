@@ -1,6 +1,6 @@
 import {test, expect} from 'playwright/test'
-import { LoginPage } from './pageObjects/UIpageObjects/login'; 
-import { HomePage } from './utils/home'
+import { LoginPage } from '../../pageObjects/UIpageObjects/login'; 
+import { HomePage } from '../../utils/home'
 import * as dotenv from 'dotenv';
 
 dotenv.config();
@@ -8,7 +8,7 @@ dotenv.config();
 const userName = process.env.USER_NAME;
 const password = process.env.PASSWORD;
 
-test('singIn', async({page})=>{
+test('signIn',{tag: '@setup'}, async({page})=>{
 
     test.setTimeout (60000);
     const loginPage = new LoginPage(page)
