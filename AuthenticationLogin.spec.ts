@@ -1,6 +1,6 @@
 import {test, expect} from 'playwright/test'
-import { LoginPage } from '../../pageObjects/UIpageObjects/login'; 
-import { HomePage } from '../../utils/home'
+import { LoginPage } from './pageObjects/UIpageObjects/login'; 
+import { HomePage } from './utils/home'
 import * as dotenv from 'dotenv';
 
 dotenv.config();
