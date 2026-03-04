@@ -1,19 +1,16 @@
 import { test} from '@playwright/test';
 import * as dotenv from 'dotenv';
 import { APIClient } from '../../utils/api/apiClient';
-import { schemaValidator } from '../../utils/validators/schemaValidator';
-import { responseBodyValidator } from '../../utils/validators/responseBodyValidator';
-import { responseCodeValidator } from '../../utils/validators/responseCodeValidator';
 import { statusCodeValidator } from '../../utils/validators/statusCodeValidator';
 import { IssueUpdatePayload } from '../../pageObjects/APIpageObjects/updateIssuePayload';
 
 dotenv.config();
 
-const userName = process.env.ADMIN_NAME;
+const userName = process.env.USER_NAME;
 if(!userName){
-    throw "User name is not defined in env file"
+    throw "User name is not configured in .env file."
 }
-
+ 
 let client: APIClient;
 
 test.beforeEach(async () => {
@@ -21,7 +18,7 @@ test.beforeEach(async () => {
   await client.init();
 });
 
-test('API 1: Create a new issue', async () => {
+test('API 1: Create a new issue',{tag: '@api'}, async () => {
   const repoName = `Repo-api-${Date.now()}`
   await client.createNewRepo(repoName, 'dummydesc')
   
@@ -30,7 +27,7 @@ test('API 1: Create a new issue', async () => {
   await statusCodeValidator.validateStatusCode(response, 201);
 });
 
-test('API 2: Get an issue', async () => {
+test('API 2: Get an issue',{tag: '@api'}, async () => {
   const repoName = `Repo-api-${Date.now()}`
   await client.createNewRepo(repoName, 'dummydesc')
   
@@ -45,7 +42,7 @@ test('API 2: Get an issue', async () => {
   await statusCodeValidator.validateStatusCode(response1, 200);
 });
 
-test('API 3: Update an issue', async () => {
+test('API 3: Update an issue',{tag: '@api'}, async () => {
   test.setTimeout(50000);
   const repoName = `Repo-api-${Date.now()}`
   await client.createNewRepo(repoName, 'dummydesc')

@@ -20,7 +20,7 @@ test.beforeEach(async({page})=>{
 })
 
 
-test('Create new issue', async({page})=>{
+test('Create new issue',{tag: '@ui'}, async({page})=>{
    test.setTimeout(80000)
 
    const homePage = new HomePage(page);
