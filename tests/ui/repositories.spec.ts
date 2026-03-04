@@ -3,14 +3,19 @@ import { HomePage } from '../../utils/home';
 import * as dotenv from 'dotenv';
 import { RepoPage } from '../../pageObjects/UIpageObjects/repoPage';
 import { faker } from '@faker-js/faker';
+import { LoginPage } from '../../pageObjects/UIpageObjects/login';
 dotenv.config();
 
-const userName = process.env.ADMIN_NAME;
-const password = process.env.PASSWORD; 
+const userName = process.env.USER_NAME;
+const password = process.env.PASSWORD;
 
-test.beforeEach('signIn', async({page})=>{
-       const homePage = new HomePage(page)
-       await homePage.navigateToUrl();
+test.beforeEach(async({page})=>{
+    const homePage = new HomePage(page)
+    await homePage.navigateToUrl();
+    const loginPage = new LoginPage(page)
+    await loginPage.signIn(userName, password);
+    
+    expect(homePage.isUserMenuVisible()).toBeTruthy();
 })
 
 test('Create new repository', async({page})=>{

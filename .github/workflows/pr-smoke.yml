@@ -1,0 +1,49 @@
+name: PR Smoke Tests
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  smoke-tests:
+    runs-on: ubuntu-latest
+
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Run Smoke + API Tests
+        env:
+          SITE_URL: ${{secrets.SITE_URL}}
+          USER_NAME: ${{secrets.USER_NAME}}
+          PASSWORD : ${{secrets.PASSWORD}}
+          USER_TOKEN : ${{secrets.USER_TOKEN}}
+          CI:  ${{secrets.CI}}
+          
+        run: |
+          npx playwright test --grep "@smoke|@api"
+
+      - name: Generate Allure Report
+        run: |
+          npx allure generate allure-results --clean -o allure-report
+        if: always()
+
+      - name: Upload Allure Report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: allure-report
+          path: allure-report

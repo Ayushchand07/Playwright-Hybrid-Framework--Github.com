@@ -16,7 +16,16 @@ if(!userName){
 
 const password = process.env.PASSWORD;
 
-test('Create repo and validate', async({page}) => {
+test.beforeEach(async({page})=>{
+    const homePage = new HomePage(page)
+    await homePage.navigateToUrl();
+    const loginPage = new LoginPage(page)
+    await loginPage.signIn(userName, password);
+    
+    expect(homePage.isUserMenuVisible()).toBeTruthy();
+})
+
+test('Create repo and validate',{tag: '@hybrid'}, async({page}) => {
     const client = new APIClient()
     await client.init();
 
@@ -25,10 +34,6 @@ test('Create repo and validate', async({page}) => {
 
     const homePage = new HomePage(page)
     await homePage.navigateToUrl();
-    await homePage.signInLink.click()
-
-    const loginPage = new LoginPage(page);
-    await loginPage.signIn(userName, password);
 
     //verify repo is preset on UI
     await homePage.navigateToHome();

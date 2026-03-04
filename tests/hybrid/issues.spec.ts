@@ -6,16 +6,26 @@ import { statusCodeValidator } from '../../utils/validators/statusCodeValidator.
 import { IssuePage } from '../../pageObjects/UIpageObjects/issuePage.ts'
 import * as dotenv from 'dotenv';
 import { IssueUpdatePayload } from '../../pageObjects/APIpageObjects/updateIssuePayload.ts'
-
+import { LoginPage } from '../../pageObjects/UIpageObjects/login.ts'
 dotenv.config();
 
-const userName = process.env.ADMIN_NAME;
+const userName = process.env.USER_NAME;
+const password = process.env.PASSWORD;
 if(!userName){
     throw "User name is not defined in env file"
 }
 
-test('Create issue and validate', async({page}) => {
-    test.setTimeout(40000);
+test.beforeEach(async({page})=>{
+    const homePage = new HomePage(page)
+    await homePage.navigateToUrl();
+    const loginPage = new LoginPage(page)
+    await loginPage.signIn(userName, password);
+    
+    expect(homePage.isUserMenuVisible()).toBeTruthy();
+})
+
+test('Create issue and validate',{tag: '@hybrid'}, async({page}) => {
+    test.setTimeout(150000);
     const client = new APIClient()
     await client.init();
 
