@@ -1,7 +1,4 @@
 import { Page, Locator } from '@playwright/test';
-import * as dotenv from 'dotenv';
-
-dotenv.config();
 
 export class LoginPage {
   readonly page: Page;

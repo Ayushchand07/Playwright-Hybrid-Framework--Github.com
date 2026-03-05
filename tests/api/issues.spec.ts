@@ -1,10 +1,8 @@
 import { test} from '@playwright/test';
-import * as dotenv from 'dotenv';
 import { APIClient } from '../../utils/api/apiClient';
 import { statusCodeValidator } from '../../utils/validators/statusCodeValidator';
 import { IssueUpdatePayload } from '../../pageObjects/APIpageObjects/updateIssuePayload';
 
-dotenv.config();
 
 const userName = process.env.USER_NAME;
 if(!userName){

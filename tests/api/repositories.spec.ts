@@ -1,5 +1,4 @@
 import { test} from '@playwright/test';
-import * as dotenv from 'dotenv';
 import { APIClient } from '../../utils/api/apiClient';
 import { schemaValidator } from '../../utils/validators/schemaValidator';
 import { responseBodyValidator } from '../../utils/validators/responseBodyValidator';
@@ -7,7 +6,6 @@ import { responseCodeValidator } from '../../utils/validators/responseCodeValida
 import { statusCodeValidator } from '../../utils/validators/statusCodeValidator';
 import expectedSchema from '../../testData/schemas/fetchRepoSchema.json'
 
-dotenv.config();
 
 let client: APIClient;
 

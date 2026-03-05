@@ -1,12 +1,10 @@
-import {test,expect} from 'playwright/test'
+import {test} from 'playwright/test'
 import { APIClient } from '../../utils/api/apiClient.ts'
 import { HomePage } from '../../utils/home.ts'
 import { statusCodeValidator } from '../../utils/validators/statusCodeValidator.ts'
 import { IssuePage } from '../../pageObjects/UIpageObjects/issuePage.ts'
-import * as dotenv from 'dotenv';
 import { IssueUpdatePayload } from '../../pageObjects/APIpageObjects/updateIssuePayload.ts'
-import { LoginPage } from '../../pageObjects/UIpageObjects/login.ts'
-dotenv.config();
+
 
 const userName = process.env.USER_NAME;
 if(!userName){

@@ -1,7 +1,4 @@
 import { Page, Locator, expect} from '@playwright/test';
-import * as dotenv from 'dotenv';
-
-dotenv.config();
 
 export class IssuePage {
   readonly page: Page;
